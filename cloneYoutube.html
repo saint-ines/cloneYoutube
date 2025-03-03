@@ -6,49 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clone Youtube</title>
     <style>
-        body{
+        body {
             font-family: 'Roboto', sans-serif;
             background-color: #f9f9f9;
             color: #0f0f0f;
             overflow-x: hidden;
         }
+
         .navbar {
             font-family: 'Roboto', sans-serif;
             background-color: #f9f9f9;
-            box-shadow: 0 1px 5px rgb(0, 0, 0,0.1);
+            box-shadow: 0 1px 5px rgb(0, 0, 0, 0.1);
         }
-        .navbar-brand{
+
+        .navbar-brand {
             display: flex;
             align-items: center;
             font-weight: bold;
             padding: 0;
             margin-right: 24px;
         }
-        .navbar-brand span{
+
+        .navbar-brand span {
             color: red;
             font-size: 22px;
             margin-left: 4px;
         }
-        .search-form{
+
+        .search-form {
             flex-grow: 22px;
             max-width: 600px;
         }
-        .search-input{
+
+        .search-input {
             border-radius: 20px 0 0 20px;
             border: 1px solid #ccc;
             padding-left: 16px;
         }
-        .search-button{
+
+        .search-button {
             border-radius: 0 20px 20px 0;
             border: 1px solid #ccc;
             border-left: none;
             background-color: #f8f8f8;
         }
-        .user-actions .nav-link{
+
+        .user-actions .nav-link {
             padding: 8px;
             font-size: 1.3rem;
         }
-        .avatar{
+
+        .avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -60,7 +68,8 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .sidebar{
+
+        .sidebar {
             position: fixed;
             top: 56px;
             left: 0;
@@ -72,7 +81,8 @@
             padding-top: 10px;
             transition: all 0.3s;
         }
-        .sidebar-item{
+
+        .sidebar-item {
             display: flex;
             align-items: center;
             padding: 10px 24px;
@@ -81,23 +91,28 @@
             text-decoration: none;
             color: #0f0f0f;
         }
-        .sidebar-item:hover{
+
+        .sidebar-item:hover {
             background-color: #fa3f3f;
         }
-        .sidebar-item.active{
+
+        .sidebar-item.active {
             background-color: #f5f3f3;
             font-weight: 500;
         }
-        .sidebar-item i{
+
+        .sidebar-item i {
             margin-right: 24px;
             font-size: 1.2rem;
         }
-        .sidebar-section{
+
+        .sidebar-section {
             border-top: 1px solid #0a0a0a;
             padding-top: 12px;
             margin-top: 12px;
         }
-        .sidebar-heading{
+
+        .sidebar-heading {
             padding: 8px 24px;
             font-size: 16px;
             font-weight: 500;
@@ -110,7 +125,7 @@
             transition: all 0.3s;
         }
 
-        .category-pills{
+        .category-pills {
             display: flex;
             overflow-x: auto;
             scrollbar-width: none;
@@ -118,10 +133,12 @@
             padding-bottom: 8px;
             gap: 12px;
         }
-        .category-pills::-webkit-scrollbar{
+
+        .category-pills::-webkit-scrollbar {
             display: none;
         }
-        .category-pill{
+
+        .category-pill {
             white-space: nowrap;
             background-color: #0f0f0f;
             border: 1px solid #e0e0e0;
@@ -131,222 +148,234 @@
             font-size: 14px;
             cursor: pointer;
         }
-        .category-pill.active{
+
+        .category-pill.active {
             background-color: #0f0f0f;
             color: white;
         }
-       @media(max-width: 992px) {
-        .sidebar{
-            width: 72px;
+
+        @media(max-width: 992px) {
+            .sidebar {
+                width: 72px;
+            }
+
+            .sidebar-item span {
+                display: none;
+            }
+
+            .sidebar-item i {
+                margin-right: 0;
+            }
+
+            .sidebar-heading {
+                display: none;
+            }
+
+            .content {
+                margin-left: 72px;
+            }
         }
-        .sidebar-item span {
+
+        @media(max-width: 768px) {
+            .sidebar {
+                width: 0;
+                visibility: hidden;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        .mobile-menu-btn {
             display: none;
         }
-        .sidebar-item i {
-            margin-right: 0;
-        }
-        .sidebar-heading{
-            display: none;
-        }
-        .content{
-            margin-left: 72px;
-        }
-       }
 
-       @media(max-width: 768px){
-        .sidebar{
-            width: 0;
-            visibility: hidden;
+        .video-card {
+            cursor: pointer;
+            margin-bottom: 40px;
+            transition: transform 0.2s;
         }
 
-        .content{
-            margin-left: 0;
+        .video-card:hover {
+            transform: scale(1.02);
         }
 
-        .mobile-menu-btn{
-            display: block !important;
+        .thumbnail-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
         }
-       }
 
-       .mobile-menu-btn{
-        display: none;
-       }
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            background-color: #ddd;
+        }
 
-       .video-card {
-        cursor: pointer;
-        margin-bottom: 40px;
-        transition: transform 0.2s;
-       }
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1px 4px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
 
-       .video-card:hover{
-        transform: scale(1.02);
-       }
+        .video-info {
+            display: flex;
+            margin-top: 12px;
+        }
 
-       .thumbnail-wrapper {
-        position: relative;
-        width: 100%;
-        border-radius: 10px;
-        overflow: hidden;
-       }
-
-       .thumbnail {
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
-        background-color: #ddd;
-       }
-
-       .video-duration{
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 1px 4px;
-        border-radius: 4px;
-        font-size: 12px;
-       }
-
-       .video-info{
-        display: flex;
-        margin-top: 12px;
-       }
+        .channel-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50px;
+            background-color: #ddd;
+            margin-right: 12px;
+        }
     </style>
 </head>
 
 <body>
-    <header>
-        <section>
-            <nav class="navbar navbar-expand-lg fixed-top">
-                <div class="container-fluid">
-                    <button class="btn mobile-menu-btn me-2">
-                        <i class="bi bi-list"></i>
-                    </button>
-
-                    <a class="navbar-brand" href="#">
-                        <i class="bi bi-youtube text-danger"></i>
-                        <span>VidéoTube</span>
-                    </a>
-
-                    <form class="search-form d-flex mx-auto">
-                        <input class="form-control search-input" type="search" placeholder="Rechercher"
-                            aria-label="Search">
-                        <button class="btn search-button" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </form>
-
-                    <div class="user-actions ms-auto d-flex align-items-center">
-                        <a href="#" class="nav-link" title="Créer">
-                            <i class="bi bi-camera-video"></i>
-                        </a>
-                        <a href="#" class="nav-link" title="Notifications">
-                            <i class="bi bi-bell"></i>
-                        </a>
-                        <a href="#" class="nav-link ms-2" title="Mode sombre" id="darkModeToggle">
-                            <i class="bi bi-moon"></i>
-                        </a>
-                        <div class="avatar ms-3">U</div>
-                    </div>
-                </div>
-            </nav>
-            <div class="sidebar">
-                <a href="#" class="sidebar-item active">
-                    <i class="bi bi-house-door"></i>
-                    <span>Accueil</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="bi bi-fire"></i>
-                    <span>Tendances</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="bi bi-collection-play"></i>
-                    <span>Abonnements</span>
-                </a>
-                
-                <div class="sidebar-section">
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-collection"></i>
-                        <span>Bibliothèque</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-clock-history"></i>
-                        <span>Historique</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-film"></i>
-                        <span>Vos vidéos</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-clock"></i>
-                        <span>À regarder plus tard</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        <span>Vidéos "J'aime"</span>
-                    </a>
-                </div>
-                
-                <div class="sidebar-section">
-                    <div class="sidebar-heading">ABONNEMENTS</div>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-person-circle"></i>
-                        <span>Dev Master</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-person-circle"></i>
-                        <span>CodeFun</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-person-circle"></i>
-                        <span>StyleMaster</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-person-circle"></i>
-                        <span>TechFuture</span>
-                    </a>
-                </div>
-                
-                <div class="sidebar-section">
-                    <div class="sidebar-heading">EXPLORER</div>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-music-note-beamed"></i>
-                        <span>Musique</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-controller"></i>
-                        <span>Jeux vidéo</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-newspaper"></i>
-                        <span>Actualités</span>
-                    </a>
-                    <a href="#" class="sidebar-item">
-                        <i class="bi bi-trophy"></i>
-                        <span>Sport</span>
-                    </a>
-                </div>
-            </div>
-            <div class="content">
-                <div class="category-pills">
-                    <div class="category-pill active">Tous</div>
-                    <div class="category-pill">Musique</div>
-                    <div class="category-pill">Programmation</div>
-                    <div class="category-pill">React JS</div>
-                    <div class="category-pill">Design Web</div>
-                    <div class="category-pill">Développement Web</div>
-                    <div class="category-pill">Intelligence artificielle</div>
-                    <div class="category-pill">Jeux vidéo</div>
-                    <div class="category-pill">Actualités</div>
-                    <div class="category-pill">Sport</div>
-                    <div class="category-pill">Cuisine</div>
-                    <div class="category-pill">Voyage</div>
-                </div>
-            </div>
+    <section>
+        <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
-                <div class="row" id="videosContainer">
-        </section>
-    </header>
+                <button class="btn mobile-menu-btn me-2">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-youtube text-danger"></i>
+                    <span>VidéoTube</span>
+                </a>
+
+                <form class="search-form d-flex mx-auto">
+                    <input class="form-control search-input" type="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn search-button" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+
+                <div class="user-actions ms-auto d-flex align-items-center">
+                    <a href="#" class="nav-link" title="Créer">
+                        <i class="bi bi-camera-video"></i>
+                    </a>
+                    <a href="#" class="nav-link" title="Notifications">
+                        <i class="bi bi-bell"></i>
+                    </a>
+                    <a href="#" class="nav-link ms-2" title="Mode sombre" id="darkModeToggle">
+                        <i class="bi bi-moon"></i>
+                    </a>
+                    <div class="avatar ms-3">U</div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <div class="sidebar">
+        <a href="#" class="sidebar-item active">
+            <i class="bi bi-house-door"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="bi bi-fire"></i>
+            <span>Tendances</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="bi bi-collection-play"></i>
+            <span>Abonnements</span>
+        </a>
+
+        <div class="sidebar-section">
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-collection"></i>
+                <span>Bibliothèque</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-clock-history"></i>
+                <span>Historique</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-film"></i>
+                <span>Vos vidéos</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-clock"></i>
+                <span>À regarder plus tard</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-hand-thumbs-up"></i>
+                <span>Vidéos "J'aime"</span>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-heading">ABONNEMENTS</div>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-person-circle"></i>
+                <span>Dev Master</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-person-circle"></i>
+                <span>CodeFun</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-person-circle"></i>
+                <span>StyleMaster</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-person-circle"></i>
+                <span>TechFuture</span>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-heading">EXPLORER</div>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-music-note-beamed"></i>
+                <span>Musique</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-controller"></i>
+                <span>Jeux vidéo</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-newspaper"></i>
+                <span>Actualités</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="bi bi-trophy"></i>
+                <span>Sport</span>
+            </a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="category-pills">
+            <div class="category-pill active">Tous</div>
+            <div class="category-pill">Musique</div>
+            <div class="category-pill">Programmation</div>
+            <div class="category-pill">React JS</div>
+            <div class="category-pill">Design Web</div>
+            <div class="category-pill">Développement Web</div>
+            <div class="category-pill">Intelligence artificielle</div>
+            <div class="category-pill">Jeux vidéo</div>
+            <div class="category-pill">Actualités</div>
+            <div class="category-pill">Sport</div>
+            <div class="category-pill">Cuisine</div>
+            <div class="category-pill">Voyage</div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" id="videosContainer">
+
 </body>
 
 </html>
