@@ -158,6 +158,58 @@
             width: 0;
             visibility: hidden;
         }
+
+        .content{
+            margin-left: 0;
+        }
+
+        .mobile-menu-btn{
+            display: block !important;
+        }
+       }
+
+       .mobile-menu-btn{
+        display: none;
+       }
+
+       .video-card {
+        cursor: pointer;
+        margin-bottom: 40px;
+        transition: transform 0.2s;
+       }
+
+       .video-card:hover{
+        transform: scale(1.02);
+       }
+
+       .thumbnail-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+       }
+
+       .thumbnail {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        background-color: #ddd;
+       }
+
+       .video-duration{
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 1px 4px;
+        border-radius: 4px;
+        font-size: 12px;
+       }
+
+       .video-info{
+        display: flex;
+        margin-top: 12px;
        }
     </style>
 </head>
@@ -291,6 +343,8 @@
                     <div class="category-pill">Voyage</div>
                 </div>
             </div>
+            <div class="container-fluid">
+                <div class="row" id="videosContainer">
         </section>
     </header>
 </body>
