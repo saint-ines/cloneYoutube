@@ -698,6 +698,82 @@
                   console.log(`Filtered by: ${category}`);
               });
           });
+
+          // Mini Player functionality
+        const videoCards = document.querySelectorAll('.video-card');
+        const miniPlayer = document.getElementById('miniPlayer');
+        const closeMiniPlayerBtn = document.getElementById('closeMiniPlayer');
+        const miniPlayerVideo = document.getElementById('miniPlayerVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        
+        videoCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const videoId = this.dataset.videoId;
+                // In a real app, you would load the actual video here
+                miniPlayer.style.display = 'block';
+                
+                // For demonstration, let's just update the title
+                const videoTitle = this.querySelector('.video-title').textContent;
+                miniPlayer.querySelector('.mini-player-header strong').textContent = videoTitle;
+            });
+        });
+        
+        closeMiniPlayerBtn.addEventListener('click', function() {
+            miniPlayer.style.display = 'none';
+            miniPlayerVideo.pause();
+        });
+        
+        playPauseBtn.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            
+            if (icon.classList.contains('bi-play-fill')) {
+                // Would play the video in a real app
+                icon.classList.replace('bi-play-fill', 'bi-pause-fill');
+            } else {
+                // Would pause the video in a real app
+                icon.classList.replace('bi-pause-fill', 'bi-play-fill');
+            }
+        });
+        
+        progressBar.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            
+            // Update progress bar
+            progressFill.style.width = `${pos * 100}%`;
+            
+            // In a real app, you would seek the video to this position
+            console.log(`Seek to: ${pos * 100}%`);
+        });
+        
+        // Infinite Scroll Simulation
+        window.addEventListener('scroll', function() {
+            // Check if we're near the bottom of the page
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+                console.log("Chargement de plus de vidéos...");
+                
+                // In a real app, you would load more videos here
+                // For now, let's just show a message after a small delay
+                setTimeout(() => {
+                    alert("Plus de vidéos seraient chargées ici dans une application réelle!");
+                }, 1000);
+            }
+        });
+        
+        // Search Functionality
+        const searchForm = document.querySelector('.search-form');
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const searchTerm = this.querySelector('input').value.trim();
+            if (searchTerm) {
+                alert(`Recherche pour: "${searchTerm}"`);
+                
+                // In a real app, you would send a search request and display results
+            }
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
