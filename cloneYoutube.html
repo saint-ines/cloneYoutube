@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clone Youtube</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -281,6 +282,36 @@
     .video-controls{
         padding: 8px;
     }
+
+    .progress-bar {
+        height: 3px;
+        background-color: #e5e5e5;
+        margin-bottom: 8px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .progress-fill{
+        height: 100%;
+        width: 30%;
+        background-color: red;
+    }
+
+    .control-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .control-buttons button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+
+    .dark-mode .progress-bar{
+        background-color: #3f3f3f;
+    }
     </style>
 </head>
 
@@ -437,7 +468,10 @@
             </div>
         </div>
     </div>
-
+    <script>
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
