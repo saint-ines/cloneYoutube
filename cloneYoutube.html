@@ -242,6 +242,45 @@
             background-color: #ddd;
             margin-right: 12px;
         }
+
+        .mini-player{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1100;
+            display: none;
+            overflow: hidden;
+        }
+
+        .dark-mode .mini-player{
+            background-color: #0f0f0f;
+        }
+
+        .mini-player-header{
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .dark-mode .mini-player-header{
+            border-color: #3f3f3f;
+        }
+        .mini-player video{
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: black;
+        }
+
+    /*controle de video*/
+
+    .video-controls{
+        padding: 8px;
+    }
     </style>
 </head>
 
