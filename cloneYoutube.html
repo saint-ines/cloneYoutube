@@ -372,9 +372,32 @@
             <div class="category-pill">Cuisine</div>
             <div class="category-pill">Voyage</div>
         </div>
+        <div class="container-fluid">
+            <div class="row" id="videosContainer">
+            </div>
+        </div>
     </div>
-    <div class="container-fluid">
-        <div class="row" id="videosContainer">
+    <div class="mini-player" id="miniPlayer">
+        <div class="mini-player-header">
+            <strong>Lecture en cours</strong>
+            <button class="btn-close" id="closeMiniPlayer"></button>
+        </div>
+        <video id="miniPlayerVideo" controlsList="nodownload" poster="/api/placeholder/400/320">
+            Votre navigateur ne prend pas en charge la vidéo HTML5.
+        </video>
+        <div class="video-controls">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="control-buttons">
+                <button><i class="bi bi-skip-backward"></i></button>
+                <button id="playPauseBtn"><i class="bi bi-play-fill"></i></button>
+                <button><i class="bi bi-skip-forward"></i></button>
+                <button><i class="bi bi-volume-up"></i></button>
+                <button><i class="bi bi-arrows-fullscreen"></i></button>
+            </div>
+        </div>
+    </div>
 
 </body>
 
